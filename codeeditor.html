@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="https://codemirror.net/lib/codemirror.css">
+	<script type="text/javascript" src="https://codemirror.net/lib/codemirror.js"></script>
+	<script  type="text/javascript" src="https://codemirror.net/mode/xml/xml.js"></script>
+	<script  type="text/javascript" src="https://codemirror.net/mode/css/css.js"></script>
+	<script  type="text/javascript" src="https://codemirror.net/mode/javascript/javascript.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+
+</head>
+<style>
+    body{
+    margin:0px;
+    font-family: "raleways" , sans-serif;
+    overflow: hidden;
+    }
+    .footer{
+        width:100%;
+        height:60px;
+        background:rgb(241, 240, 240);
+        display:flex;
+        justify-content:center;
+        align-items: center;
+       }
+       
+       .footer button{
+           padding: 10px 20px;
+           background: rgb(63, 62, 62);
+           color:#111;
+           font-size: 16px;
+           font-weight: 600;
+           border:none;
+           outline:none;
+           border-radius: 10px;
+           cursor:pointer;
+       }
+    .editor{
+        width:100%;
+        height:calc(100% -50px);
+        display: flex;
+       
+    }
+    .editor .code{
+        width: 100%;
+        border-right: 1px solid #888;
+        display: inline-flex;
+       
+    }
+    .editor .code > div{
+        width:100%;
+        height:33.33%;
+        border-bottom:1px solid #888;
+      
+    }
+    .editor .preview{
+        width:calc(100% - 10px);
+        height:170%;
+
+    }
+    .editor .preview iframe{
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+     h4 {
+        text-align:center;
+        
+     }
+      
+     
+         .footer__copy{
+            text-align: center;
+            font-size: 1.513rem;
+            color: #050505;
+            margin-top: 1rem;
+            font-family: 'Shadows Into Light', cursive;
+
+            
+          }
+</style>
+
+<body>
+
+	
+	<div class="editor">
+		<div class="code">
+			<div class="html-code">
+                <h4>HTML CODE</h4>
+            </div>
+			<div class="css-code">
+                <h4>CSS CODE</h4>
+            </div>
+			<div class="js-code">
+                <h4>JAVASCRIPT CODE</h4>
+            </div>
+		</div>
+		
+	</div>
+    <br>
+    <br>
+    
+    <div class="footer">
+		<button id="run-btn" style ="color:white; font-family: 'Shadows Into Light', cursive;">Run</button>
+	</div>
+    <div class="editor">
+        <div class="preview">
+            <iframe id="preview-window"></iframe>
+        </div>
+        </div>
+        
+            <div></div>
+                <a href="https://www.facebook.com/nowfiya.shereen" class="footer__copy"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.instagram.com/nowfiya_m" class="footer__copy"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.linkedin.com/in/mohamed-nowfiya-3b45b1202" class="footer__copy"><i class='bx bxl-linkedin'></i></a>
+            
+        
+        <h4 class="footer__copy">&#169; M.Mohamed Nowfiya</h4>
+        
+
+	
+<script>
+    const htmlEditor = CodeMirror(document.querySelector(".editor .code .html-code"),{
+	lineNumbers:true,
+	tabSize:4,
+	mode:"xml"
+});
+const cssEditor = CodeMirror(document.querySelector(".editor .code .css-code"),{
+	lineNumbers:true,
+	tabSize:4,
+	mode:"css"
+});
+const jsEditor = CodeMirror(document.querySelector(".editor .code .js-code"),{
+	lineNumbers:true,
+	tabSize:4,
+	mode:"javascript"
+});
+
+document.querySelector("#run-btn").addEventListener("click",function(){
+	let htmlCode = htmlEditor.getValue();
+	let cssCode = "<style>" + cssEditor.getValue() + "</style>";
+	let jsCode = "<scri" + "pt>" + jsEditor.getValue() + "</scri" + "pt>";
+	let previewWindow = document.querySelector("#preview-window").contentWindow.document;
+	previewWindow.open();
+	previewWindow.write(htmlCode+cssCode+jsCode);
+	previewWindow.close();
+});
+var someVar = "value";
+localStorage.setItem("someVarKey",someVar);
+var someVar =localStorage.getItem("someVarKey");
+</script>
+</body>
+</html>
